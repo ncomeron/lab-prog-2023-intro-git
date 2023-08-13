@@ -1,0 +1,6 @@
+Introducción
+Un semáforo es un mecanismo de sincronización utilizado en Java. Permite establecer la exclusión mutua dentro del código, accediendo a la misma mediante permisos. Estos permisos pueden ser binarios o generales, por lo tanto, existirán semáforos de tipo binario y de propósito general. Cada hilo que desee ingresar en la porción de código exclusiva, deberá primero obtener el permiso del semáforo correspondiente. De no lograrlo, se queda en espera hasta que otro hilo abandone y libere su lugar. De esta manera, este mecanismo permite la concurrencia en secciones críticas de nuestro código.
+
+Guía de Uso
+Para su utilización, es necesario importar el siguiente paquete: java.util.concurrent.Semaphore. Luego, se instancia la estructura Semaphore sem = new Semaphore(n, true), donde n hace referencia a la cantidad de permisos que se dispondrá desde el primer momento (cantidad de hilos en la sección crítica simultáneamente, dicho de otra manera) y el valor true está asociado a contemplar el orden de llegada de los mismos. 
+Una vez identificado el sector del código a restringir la concurrencia, el mismo se delimitará a través de los métodos sem.acquire() y sem.release() (adquisición y liberación del permiso). Puede consumirse/liberarse más de un permiso de la siguiente manera: sem.acquire(n) y sem.release(n), respectivamente (siendo n la cantidad). 
